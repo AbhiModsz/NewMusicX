@@ -73,7 +73,7 @@ async def shell_cmd(cmd):
     return out.decode("utf-8")
 
 
-AMBOT = f"http://yt.zapto.org/api/api/?api_key=test&url=https://www.youtube.com/watch?v="
+AMBOT = f"http://yt.zapto.org/api/api/?api_key=testt&url=https://www.youtube.com/watch?v="
 
 async def API_SONG(vid_id: str):
     video_id = vid_id.split('v=')[-1].split('&')[0]
