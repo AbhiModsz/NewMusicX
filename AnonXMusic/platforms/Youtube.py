@@ -106,7 +106,7 @@ async def API_SONG(vid_id: str):
                                         if not chunk:
                                             break
                                         f.write(chunk)
-                                print("Song Downloaded From API")
+                                print("Song Downloaded From Pro API")
                                 return file_path
                             else:
                                 print(f"Failed to download the file. Status code: {file_response.status}")
