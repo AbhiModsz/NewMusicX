@@ -359,7 +359,7 @@ class YouTubeAPI:
             )
 
         except Exception as e:
- LOGGER(__name__).error(f"Error in slider: {str(e)}")
+            LOGGER(__name__).error(f"Error in slider: {str(e)}")  # Fixed indentation
             raise ValueError("Failed to fetch video details")
 
     async def download(
