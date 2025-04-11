@@ -15,23 +15,14 @@ from youtubesearchpython.__future__ import VideosSearch, CustomSearch
 from AnonXMusic.utils.database import is_on_off
 from AnonXMusic.utils.formatters import time_to_seconds
 from AnonXMusic import LOGGER
-from config import YTPROXY_URL as YTPROXY, KEY
+from config import  KEY
 
 def cookie_txt_file():
-    try:
-        folder_path = f"{os.getcwd()}/cookies"
-        filename = f"{os.getcwd()}/cookies/logs.csv"
-        txt_files = glob.glob(os.path.join(folder_path, '*.txt'))
-        if not txt_files:
-            raise FileNotFoundError("No .txt files found in the specified folder.")
-        cookie_txt_file = random.choice(txt_files)
-        with open(filename, 'a') as file:
-            file.write(f'Chosen File : {cookie_txt_file}\n')
-        return f"""cookies/{str(cookie_txt_file).split("/")[-1]}"""
-    except Exception as e:
-        print(f"Error in cookie_txt_file: {e}")
-        return None
-
+    cookie_dir = "AnonXMusic/cookies"
+    cookies_files = [f for f in os.listdir(cookie_dir) if f.endswith(".txt")]
+    cookie_file = os.path.join(cookie_dir, random.choice(cookies_files))
+    return cookie_file
+    
 async def check_file_size(link):
     async def get_format_info(link):
         proc = await asyncio.create_subprocess_exec(
@@ -106,7 +97,7 @@ async def API_SONG(vid_id: str):
                                         if not chunk:
                                             break
                                         f.write(chunk)
-                                print("Song Downloaded From Pro API")
+                                print("Song Downloaded From API")
                                 return file_path
                             else:
                                 print(f"Failed to download the file. Status code: {file_response.status}")
